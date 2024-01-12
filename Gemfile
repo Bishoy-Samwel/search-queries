@@ -78,3 +78,5 @@ end
 gem "sidekiq", "~> 7.2"
 
 gem "tailwindcss-rails", "~> 2.3"
+
+gem "requestjs-rails", "~> 0.0.11"
