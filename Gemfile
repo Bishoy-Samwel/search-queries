@@ -76,3 +76,5 @@ group :test do
 end
 
 gem "sidekiq", "~> 7.2"
+
+gem "tailwindcss-rails", "~> 2.3"
