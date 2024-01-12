@@ -1,0 +1,10 @@
+<div class="flex flex-col gap-y-5">
+  <p class="font-bold bg-indigo-50"> Search Result </p>
+  <div class="bg-emerald-50">
+    <% @articles.each do |a| %>
+      <p class="text-indigo-900"> <%= a.content %> </p>
+    <% end %>
+  </div>
+  <hr>
+</div>
+
