@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'searches/index'
+  get 'searches/create'
+  get 'searches/update'
   resources :articles, trailing_slash: true do
     collection do
       post :search
