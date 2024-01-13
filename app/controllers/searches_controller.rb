@@ -8,12 +8,10 @@ class SearchesController < ApplicationController
     larger_queries = Search.larger_queries(query_value)
     if larger_queries.empty?
       Search.create(query: query_value)
-      debugger
       smaller_queries = Search.smaller_queries(query_value)
       smaller_queries.each do |record|
         record.destroy if record.query.length < query_value.length
       end
-      debugger
     end
   end
 
