@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: analytics_test_production
-  username: analytics_test
-  password: <%= ENV["ANALYTICS_TEST_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
