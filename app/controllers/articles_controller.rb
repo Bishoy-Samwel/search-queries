@@ -7,7 +7,11 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @articles = Article.where('content ILIKE ?', "%#{params[:query]}%").order(created_at: :desc)
+    if params.dig(:query).present?
+      @articles = Article.filter_by_query(params[:query])
+    else
+      @articles = []
+    end
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [

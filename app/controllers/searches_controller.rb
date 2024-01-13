@@ -3,6 +3,7 @@ class SearchesController < ApplicationController
   end
 
   def create
+    Search.create(query: params.dig(:query))
   end
 
   def update

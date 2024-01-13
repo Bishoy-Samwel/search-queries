@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  get 'searches/index'
-  get 'searches/create'
-  get 'searches/update'
+  resources :searches do
+    member do
+      post :create
+    end
+    collection do
+      get :index, :update
+    end
+  end
   resources :articles, trailing_slash: true do
     collection do
       post :search
