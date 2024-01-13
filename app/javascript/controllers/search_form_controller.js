@@ -7,7 +7,8 @@ export default class extends Controller {
         current: {type: Number, default: 0},
         new: {type: Number, default: 0},
         // increasing: {type: Boolean, default: true},
-        // term: {type: String, default: ''}
+        currentTerm: {type: String, default: ''},
+        newTerm: {type: String, default: ''}
     }
 
     connect() {
@@ -39,7 +40,14 @@ export default class extends Controller {
     filter_data(query) {
         query = query.trim()
         this.newValue = query.length;
-        if (this.newValue >= this.currentValue ) {
+        if (this.newTermValue === '') {
+            this.newTermValue = query
+        } else {
+            this.currentTerm = this.newTermValue
+            this.newTermValue = query
+        }
+
+        if (this.newValue >= this.currentValue || !this.newTermValue.includes(this.currentTerm)) {
             this.currentValue = this.newValue
             try {
                 post(`/searches/create`, {
