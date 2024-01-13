@@ -5,33 +5,44 @@
                   class: 'my-5' do |form| %>
       <%= form.search_field :query,
                             value: params[:query],
-                            'data-action': "input->search-form#search"%>
+                            'data-action': "input->search-form#search" %>
       <input type="hidden"
              name="format"
              value="turbo_stream">
     <% end %>
 
-    <div id="search_results" class="bg-gray-50"> </div>
+    <div id="search_results" class="bg-gray-50"></div>
 
     <p style="color: green"><%= notice %></p>
   </div>
   <div class="bg-yellow-50 w-6/12 flex flex-col items-center-center p-3">
-    <h1>Trends</h1>
+    <h1>User searches</h1>
     <div id="searches">
       <%= render partial: "searches/searches_list",
-                 locals: { searches: Search.all }  %>
+                 locals: { searches: Search.all.where(ip_address: @ip_address) } %>
     </div>
   </div>
 </div>
 
-<h1>Articles</h1>
+<div class="flex gap-x-5">
+  <div class="w-6/12 bg-emerald-50 p-2">
+    <h1>Articles</h1>
 
-<div id="articles">
-  <% @articles.each do |article| %>
-    <p>
-      <%= link_to article.content, article %>
-    </p>
-  <% end %>
+    <div id="articles">
+      <% @articles.each do |article| %>
+        <p>
+          <%= link_to article.content, article %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+  <div class="w-6/12 bg-amber-50 p-2">
+    <p> Analytics </p>
+    <% result = Search.query_count_by_ip_address%>
+    <% result.each do |item| %>
+      <p>Query: <%= item.query %>, Count: <%= item.user_count %></p>
+    <% end %>
+  </div>
 </div>
 
 <%= link_to "New article", new_article_path %>

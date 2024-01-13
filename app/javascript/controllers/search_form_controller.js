@@ -39,7 +39,7 @@ export default class extends Controller {
     filter_data(query) {
         query = query.trim()
         this.newValue = query.length;
-        if (this.newValue > this.currentValue ) {
+        if (this.newValue >= this.currentValue ) {
             this.currentValue = this.newValue
             try {
                 post(`/searches/create`, {
