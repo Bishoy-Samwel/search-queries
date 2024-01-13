@@ -6,7 +6,7 @@ export default class extends Controller {
     static values = {
         current: {type: Number, default: 0},
         new: {type: Number, default: 0},
-        increasing: {type: Boolean, default: true},
+        // increasing: {type: Boolean, default: true},
         // term: {type: String, default: ''}
     }
 
@@ -37,8 +37,9 @@ export default class extends Controller {
     }
 
     filter_data(query) {
+        query = query.trim()
         this.newValue = query.length;
-        if (this.newValue >= this.currentValue ) {
+        if (this.newValue > this.currentValue ) {
             this.currentValue = this.newValue
             try {
                 post(`/searches/create`, {
@@ -53,32 +54,7 @@ export default class extends Controller {
             }
         } else if (this.newValue < this.currentValue) {
             this.currentValue = this.newValue
-            this.increasingValue = false
         }
     };
 }
 
-/*
-if the word decreased without any increase don't send
-once there is increase start sending
-----
-curr=0; new = 0; inc = true; dec = false
-new = query.length
-new > curr && inc?
-    curr = new
-    send it to backend
-new < curr?
-    curr = new
-    inc = false
-new == curr && !inc
-    send it to backend
-----
-Send only if it decrease or after 5 seconds
-
-
-current = 5 => send
-increase = 1, decrease = 0
-current = 6 => send
-decrease = 1
-current = 3
-*/

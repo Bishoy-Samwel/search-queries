@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    query_value = params.dig(:query)
+    query_value = params.dig(:query).strip
     larger_queries = Search.larger_queries(query_value)
     if larger_queries.empty?
       Search.create(query: query_value)
