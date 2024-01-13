@@ -83,6 +83,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_user_ip_address
+    Search.destroy_all unless @ip_address
     @ip_address = request.remote_ip
   end
 
