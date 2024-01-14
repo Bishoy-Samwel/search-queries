@@ -1,5 +1,5 @@
-    debugger
-# Ride It (Online shop)
+
+# Search queries 
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@
 
 ## Functionality Requirements
 
-    - A realtime search box where users search articles ☑️
+    - A realtime search box where users search articles 
     - Analytics that display what users were searching for 
     - Track user via IP
     - Record their input in realtime
@@ -34,8 +34,6 @@
   ```bash
   git clone https://github.com/Bishoy-Samwel/search-queries
   ```
-
-- Navigate to JoggingAPI directory
 
   ```bash
   cd search-queries
