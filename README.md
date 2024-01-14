@@ -39,6 +39,8 @@
   cd search-queries
   ```
 - On the comandline, at the project's root, run `bundle i` to install app dependencies
+    - `yarn`
+    - `bundle`     
     - `rails db:create`
     - `rails db:migrate`
     - `rails db:seed`
